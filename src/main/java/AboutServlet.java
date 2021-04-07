@@ -6,15 +6,13 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet(name = "HelloWorldServlet", urlPatterns = "/hello-world")
-public class HelloWorldServlet extends HttpServlet {
+@WebServlet("/about")
+public class AboutServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html");
         PrintWriter out = resp.getWriter();
-        out.println("<h1>Hello, World!</h1><a href='/about'>About</a><a href='/login'>Login</a>");
+        out.println("<h1>About us....</h1><a href='/hello-world'>Home</a><a href='/login'>Login</a>");
     }
-
-
 }

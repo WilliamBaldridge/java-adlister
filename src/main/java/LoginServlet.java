@@ -29,7 +29,7 @@ public class LoginServlet extends HttpServlet {
         System.out.println(username);
 
         if (username.equals("hi")) {
-            resp.sendRedirect("/hello-world");
+            resp.sendRedirect("/hello-world?name=" + username);
         } else {
             resp.sendRedirect("/about");
         }

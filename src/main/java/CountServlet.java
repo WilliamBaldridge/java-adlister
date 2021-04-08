@@ -12,15 +12,17 @@ public class CountServlet extends HttpServlet {
 
     private int pageCount;
 
-    private int resetCount;
-
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         PrintWriter out = resp.getWriter();
         resp.setContentType("text/html");
 
-        pageCount++;
+        if (req.getParameter("reset") != null) {
+            pageCount = 0;
+        }
+
+        pageCount += 1;
 
         String output = "";
         output += "<h1>Page Counter: </h1>" + pageCount;
@@ -29,7 +31,9 @@ public class CountServlet extends HttpServlet {
         output += "<input name='reset' type='text' placeholder='Would you like to reset? Enter y'>";
         output += "<button>Reset</button>";
         output += "</form>";
+        output += "<a href='/about'>About </a><a href='/login'>Login </a><a href='/count'>Page Counter</a>";
         out.println(output);
+
     }
 
 
@@ -38,8 +42,8 @@ public class CountServlet extends HttpServlet {
         String reset = req.getParameter("reset");
 
         if (reset.equals("y")) {
-            pageCount = -1;
-            resp.sendRedirect("/count");
+            pageCount = 0;
+            resp.sendRedirect("/hell-world");
         } else {
             resp.sendRedirect("/count");
         }

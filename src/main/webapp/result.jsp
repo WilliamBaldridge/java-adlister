@@ -2,22 +2,17 @@
   Created by IntelliJ IDEA.
   User: williambaldridge
   Date: 4/12/21
-  Time: 13:31
+  Time: 14:54
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Pick Color</title>
+    <title>Result Page</title>
 </head>
 <body>
 
-<h1>Pick Color</h1>
-
-<form action="/pickcolor" method="POST">
-    <input type="text" name="color" placeholder="Enter desired background color">
-    <button>Submit</button>
-</form>
+<h1>Result: ${result}</h1>
 
 </body>
 </html>

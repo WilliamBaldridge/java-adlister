@@ -1,3 +1,9 @@
+package controllers;
+
+import beans.Ad;
+import models.Ads;
+import models.DaoFactory;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -7,7 +13,7 @@ import java.io.IOException;
 import java.util.List;
 
 @WebServlet(name = "IndexServlet", urlPatterns = "/ads")
-public class IndexServlet extends HttpServlet {
+public class AdsServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

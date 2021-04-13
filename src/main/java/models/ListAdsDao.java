@@ -1,14 +1,26 @@
+package models;
+
+import beans.Ad;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class ListAdsDao implements Ads {
     private List<Ad> ads;
 
+    public ListAdsDao() {
+        this.ads = generateAds();
+    }
+
     public List<Ad> all() {
-        if (ads == null) {
-            ads = generateAds();
-        }
         return ads;
+    }
+
+    @Override
+    public void insert(Ad ad) {
+        //
+        this.ads.add(ad);
+
     }
 
     private List<Ad> generateAds() {
@@ -39,4 +51,7 @@ public class ListAdsDao implements Ads {
         ));
         return ads;
     }
+
+
+
 }

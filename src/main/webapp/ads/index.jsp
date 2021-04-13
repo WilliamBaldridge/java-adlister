@@ -20,7 +20,8 @@
 
     <div>
         <h3>Ad: ${ad.title}</h3>
-        <p>Description ${ad.description}</p>
+        <p>${ad.description}</p>
+        <hr>
     </div>
 
 </c:forEach>

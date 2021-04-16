@@ -6,6 +6,7 @@ import models.Config;
 public class DaoFactory {
 
     private static Ads adsDao;
+    private static Config config;
 
 
     public static Ads getAdsDao() {

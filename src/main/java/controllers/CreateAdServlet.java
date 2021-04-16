@@ -1,3 +1,8 @@
+package controllers;
+
+import models.Ad;
+import models.DaoFactory;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,17 +13,28 @@ import java.io.IOException;
 @WebServlet(name = "CreateAdServlet", urlPatterns = "/ads/create")
 public class CreateAdServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("/WEB-INF/ads/create.jsp")
+
+        request.getRequestDispatcher("/WEB-INF/views/ads/create.jsp")
             .forward(request, response);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+
         Ad ad = new Ad(
-            1, // for now we'll hardcode the user id
+            1L, // for now we'll hardcode the user id
+//                request.getSession().getAttribute("user),
             request.getParameter("title"),
             request.getParameter("description")
         );
         DaoFactory.getAdsDao().insert(ad);
+
         response.sendRedirect("/ads");
+
+//        long saveId = DaoFactory.getAdsDao().insert(ad);
+//        ad.setId(saveId);
+//        request.setAttribute("ad", ad);
+
+//        request.getRequestDispatcher("/WEB-INF/ads/show.jsp").forward(request, response);
     }
+
 }

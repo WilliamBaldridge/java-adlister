@@ -29,16 +29,10 @@ public class MySQLAdsDao implements Ads {
 
     @Override
     public List<Ad> all() {
-        PreparedStatement stmt = null;
-        String getAllSql = "SELECT * FROM ?";
-        String
-
-
+        Statement stmt = null;
         try {
-            stmt = connection.prepareStatement(getAllSql);
-            stmt.setString(1, "ads");
-
-            ResultSet rs = stmt.executeQuery();
+            stmt = connection.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM ads");
             return createAdsFromResults(rs);
         } catch (SQLException e) {
             throw new RuntimeException("Error retrieving all ads.", e);
@@ -47,9 +41,17 @@ public class MySQLAdsDao implements Ads {
 
     @Override
     public Long insert(Ad ad) {
+
+        String sql = "INSERT INTO ads (user_id, title, description) VALUES(?, ?, ?)";
+
         try {
-            Statement stmt = connection.createStatement();
-            stmt.executeUpdate(createInsertQuery(ad), Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+
+            stmt.setLong(1, 1);
+            stmt.setString(2, "Hard coded");
+            stmt.setString(3, "Can't remember if this takes the input");
+
+            stmt.executeUpdate();
             ResultSet rs = stmt.getGeneratedKeys();
             rs.next();
             return rs.getLong(1);
